@@ -1,6 +1,9 @@
 ---
+- name: Copy zbj.repo for install ovs
+  copy: src=zbj.repo dest=/etc/yum.repos.d/zbj.repo
+
 - name: Install openvswitch and bridge-utils
-  yum: name=openvswitch,bridge-utils state=latest
+  yum: name=openvswitch,bridge-utils state=latest disable_gpg_check=yes
 
 - name: Set up linux bridge configuration
   template: src=ifcfg-kbr0.j2 dest=/etc/sysconfig/network-scripts/ifcfg-kbr0
